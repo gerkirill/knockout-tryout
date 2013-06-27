@@ -1,0 +1,53 @@
+<!-- libraries -->
+<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+<script src="http://code.jquery.com/jquery-git1.js"></script>
+
+<!-- my javascript with view-model -->
+<script src="checkboxes.js"></script>
+<script>
+    $(function(){
+        ko.applyBindings(new checkboxes, $('.data-checkboxes')[0]);
+    });
+</script>
+<style>
+    /* decorative styling */
+    html{font-size:18px; line-height:34px;background:whitesmoke;}
+    body{width:80%;margin-left:auto;margin-right:auto;margin-top:60px;}
+    label{cursor:pointer;}
+    /* used by the widget logic */
+    .grey{color:grey;}
+</style>
+<h1> Knockout tryout</h1>
+<div class="data-checkboxes">
+    <label>
+        <input type="checkbox" name="option" class="option" value="1" data-bind="checked: checkboxes.cb_1" checked>uno
+    </label><br/>
+    <label>
+        <input type="checkbox" name="option" class="option" value="2" data-bind="checked: checkboxes.cb_2">dos
+    </label><br/>
+    <label>
+        <input type="checkbox" name="option" class="option" value="3" data-bind="checked: checkboxes.cb_3" checked>tres
+    </label><br/>
+    <label>
+        <input type="checkbox" name="option" class="option" value="4" data-bind="checked: checkboxes.cb_4">four
+    </label><br/>
+    <label>
+        <input type="checkbox" name="option" class="option" value="5" data-bind="checked: checkboxes.cb_5">five
+    </label><br/>
+    <label>
+        <input type="checkbox" name="option" class="option" value="6" data-bind="checked: checkboxes.cb_6">six
+    </label><br/>
+    <div>
+        <em>
+            We have <span data-bind="text: checkedCount">0</span> checked checkboxes
+            and <span data-bind="text: uncheckedCount">0</span> unchecked ones.
+        </em>
+    </div>
+    <div>
+        <label data-bind="css:{grey:heterogenous}">
+            <input type="checkbox" data-bind="checked: switcherChecked">
+            <span data-bind="ifnot: switcherChecked">Check all</span>
+            <span data-bind="if: switcherChecked">Uncheck all</span>
+        </label>
+    </div>
+</div>
