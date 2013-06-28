@@ -1,6 +1,8 @@
 Knockout tryout
 ===============
 
+Running example can be found here http://sigma.kurgent.com/ko/
+
 This example demonstrates using knockout library to calculate number of checked checkboxes and state of the 
 "check all" checkbox and its label. Rules are:
 
