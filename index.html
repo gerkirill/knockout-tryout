@@ -1,9 +1,18 @@
+<!-- 
+This example demonstrates using knockout library to calculate number of checked checkboxes and state of the 
+"check all" checkbox and its label. Rules are:
+ - if at least one cb is checked - the label is "Uncheck all"
+ - if no cb checked - the label is "Check all"
+ - if there are both checked and unchecked cb-s - the label is grey
+ - otherwise (if all the cb-s have the same state) - the label is black
+-->
+
 <!-- libraries -->
 <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
 <script src="http://code.jquery.com/jquery-git1.js"></script>
 
 <!-- my javascript with view-model -->
-<script src="checkboxes.js"></script>
+<script src="checkboxes.js"></script> 
 <script>
     $(function(){
         ko.applyBindings(new checkboxes, $('.data-checkboxes')[0]);
@@ -20,22 +29,22 @@
 <h1> Knockout tryout</h1>
 <div class="data-checkboxes">
     <label>
-        <input type="checkbox" name="option" class="option" value="1" data-bind="checked: checkboxes.cb_1" checked>uno
+        <input type="checkbox" name="option" class="option" value="1" data-bind="checked: checkboxes.cb_1" checked> uno
     </label><br/>
     <label>
-        <input type="checkbox" name="option" class="option" value="2" data-bind="checked: checkboxes.cb_2">dos
+        <input type="checkbox" name="option" class="option" value="2" data-bind="checked: checkboxes.cb_2"> dos
     </label><br/>
     <label>
-        <input type="checkbox" name="option" class="option" value="3" data-bind="checked: checkboxes.cb_3" checked>tres
+        <input type="checkbox" name="option" class="option" value="3" data-bind="checked: checkboxes.cb_3" checked> tres
     </label><br/>
     <label>
-        <input type="checkbox" name="option" class="option" value="4" data-bind="checked: checkboxes.cb_4">four
+        <input type="checkbox" name="option" class="option" value="4" data-bind="checked: checkboxes.cb_4"> four
     </label><br/>
     <label>
-        <input type="checkbox" name="option" class="option" value="5" data-bind="checked: checkboxes.cb_5">five
+        <input type="checkbox" name="option" class="option" value="5" data-bind="checked: checkboxes.cb_5"> five
     </label><br/>
     <label>
-        <input type="checkbox" name="option" class="option" value="6" data-bind="checked: checkboxes.cb_6">six
+        <input type="checkbox" name="option" class="option" value="6" data-bind="checked: checkboxes.cb_6"> six
     </label><br/>
     <div>
         <em>
