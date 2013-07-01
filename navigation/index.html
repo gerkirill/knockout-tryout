@@ -22,6 +22,7 @@
     /* decorative styling */
     html{font-size:18px; line-height:34px;background:whitesmoke;}
     body{width:80%;margin-left:auto;margin-right:auto;margin-top:60px;}
+    ul {padding-left:1em}
 
     .active {
         text-decoration: none;
@@ -30,15 +31,22 @@
 </style>
 <h1>Navigating with hashtag</h1>
 <h3>Data is loaded over AJAX</h3>
+
 <div class="data-list" id="main">
-    <a href="#/" data-bind="css: {active: sortedAsc}">Asc</a>
-    <a href="#/desc" data-bind="css: {active: sortedAsc()===false}">Desc</a> 
-    <div data-bind="foreach:records">
-        <div>
+    <!-- sorting links -->
+    <a href="#/" data-bind="css: {active: sortedAsc}">
+        Asc</a>
+    <a href="#/desc" data-bind="css: {active: sortedAsc()===false}">
+        Desc</a>
+
+    <!-- ordered list --> 
+    <ul data-bind="foreach:records">
+        <li>
             <span data-bind="text: firstName"></span>
             <span data-bind="text: lastName"></span>
-        </div>
-    </div>
+        </li>
+    </ul>
 </div>
+
 <br />
 <a href="../">Back to home</a>
