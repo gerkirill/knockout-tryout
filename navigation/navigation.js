@@ -1,22 +1,32 @@
 list = function() {
     var self = this;
 
-    self.sortedAsc = ko.observable(true);
+    self.sortedAsc = ko.observable(true).subscribeTo("ordering", true, _setOrder);
+    self.records = ko.observableArray();
 
-    self.records = ko.observableArray()
-
-    self.loadData = function(data) {
-    	self.records.removeAll();
-    	$(data).each(function(key, value){
-    		self.records.push(value);
-    	});
+    function _loadData(data) {
+        self.records.removeAll();
+        $(data).each(function(key, value){
+            self.records.push(value);
+        });
     }
 
-    self.setOrderAsc = function() {
-    	self.sortedAsc(true);
-    }
-
-    self.setOrderDesc = function() {
-    	self.sortedAsc(false);
+    function _setOrder(order) {
+        $.getJSON('list-'+order+'.json', function(data){
+            _loadData(data);
+        });
+        return 'asc' === order;
     }
 }
+
+// initialize the application
+var app = Sammy('#main', function() {
+    // define a 'route'
+    this.get('#/', function() {
+        ko.postbox.publish("ordering", "asc");
+    });
+
+    this.get('#/desc', function() {
+        ko.postbox.publish("ordering", "desc");
+    });
+});

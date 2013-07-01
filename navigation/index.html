@@ -6,6 +6,7 @@
 <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
 <script src="http://code.jquery.com/jquery-git1.js"></script>
 <script src="sammy.js"></script>
+<script src="knockout-postbox.js"></script>
 
 <!-- my javascript with view-model -->
 <script src="navigation.js"></script> 
@@ -13,24 +14,6 @@
     $(function(){
         var myList  = new list;
         ko.applyBindings(myList, $('.data-list')[0]);
-
-        // initialize the application
-        var app = Sammy('#main', function() {
-            // define a 'route'
-            this.get('#/', function() {
-                $.getJSON('list-asc.json', function(data){
-                    myList.loadData(data);
-                    myList.setOrderAsc();
-                });
-            });
-
-            this.get('#/desc', function() {
-                $.getJSON('list-desc.json', function(data){
-                    myList.loadData(data);
-                    myList.setOrderDesc();
-                });
-            });
-        });
         // start the application
         app.run('#/');
     });
