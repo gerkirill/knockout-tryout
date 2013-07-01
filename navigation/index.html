@@ -1,0 +1,59 @@
+<!-- 
+
+-->
+
+<!-- libraries -->
+<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+<script src="http://code.jquery.com/jquery-git1.js"></script>
+<script src="sammy.js"></script>
+
+<!-- my javascript with view-model -->
+<script src="navigation.js"></script> 
+<script>
+    $(function(){
+        var myList  = new list;
+        ko.applyBindings(myList, $('.data-list')[0]);
+
+        // initialize the application
+        var app = Sammy('#main', function() {
+            // define a 'route'
+            this.get('#/', function() {
+                $.getJSON('list-asc.json', function(data){
+                    myList.loadData(data);
+                    myList.setOrderAsc();
+                });
+            });
+
+            this.get('#/desc', function() {
+                $.getJSON('list-desc.json', function(data){
+                    myList.loadData(data);
+                    myList.setOrderDesc();
+                });
+            });
+        });
+        // start the application
+        app.run('#/');
+    });
+</script>
+<style>
+    /* decorative styling */
+    html{font-size:18px; line-height:34px;background:whitesmoke;}
+    body{width:80%;margin-left:auto;margin-right:auto;margin-top:60px;}
+
+    .active {
+        text-decoration: none;
+        color:#505050;
+    }
+</style>
+<h1>Navigating with hashtag</h1>
+<h3>Data is loaded over AJAX</h3>
+<div class="data-list" id="main">
+    <a href="#/" data-bind="css: {active: sortedAsc}">Asc</a>
+    <a href="#/desc" data-bind="css: {active: sortedAsc()===false}">Desc</a> 
+    <div data-bind="foreach:records">
+        <div>
+            <span data-bind="text: firstName"></span>
+            <span data-bind="text: lastName"></span>
+        </div>
+    </div>
+</div>
